@@ -1,92 +1,535 @@
+
+File list / folder structure
+
+/ (root)
+├─ index.html
+├─ files.html
+├─ documents.html
+├─ press.html
+├─ pdfs.html
+├─ /destruction-community/
+│    └─ index.html
+└─ /assets/
+     ├─ style.css
+     └─ script.js
+
+
+---
+
+/assets/style.css
+
+:root{
+  --bg:#060709;
+  --panel:#0d1114;
+  --muted:#9aa4af;
+  --line:#1f2933;
+  --accent:#7cf76a;     /* neon green */
+  --accent-2:#00c2d7;   /* cyan */
+  --danger:#ef4444;
+  --glass: rgba(255,255,255,0.03);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+body{
+  background:linear-gradient(180deg,var(--bg),#051015 150%);
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  font-size:15px;
+}
+
+/* header / nav */
+.header{
+  position:sticky; top:0; z-index:60;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(6,7,9,0.75), rgba(6,7,9,0.65));
+  border-bottom:1px solid var(--line);
+}
+.container{max-width:1100px;margin:0 auto;padding:20px;}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:12px;height:68px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:44px;height:44px;border-radius:999px;object-fit:cover;border:1px solid rgba(255,255,255,0.04)}
+.brand .title{font-weight:800;letter-spacing:1px;font-size:18px}
+.menu{display:flex;gap:18px;align-items:center}
+.menu a{color:#bcd1d8;text-decoration:none;padding:8px 0;font-weight:600;font-size:14px}
+.menu a:hover, .menu a.active{color:#ffffff;border-bottom:2px solid rgba(124,255,107,0.14)}
+.hambtn{display:none;border:1px solid rgba(255,255,255,0.04);background:transparent;padding:8px;border-radius:10px}
+
+/* hero */
+.hero{padding:56px 0;border-bottom:1px solid var(--line);}
+.hero .lead{color:var(--muted);max-width:760px;margin-top:12px}
+
+/* layout cards */
+.grid{display:grid;gap:18px}
+.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:0 10px 30px rgba(0,0,0,0.45)}
+.card h3{margin:0 0 8px;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+
+/* table */
+.table{width:100%;border-collapse:collapse;margin-top:6px}
+.table th,.table td{padding:12px;border-bottom:1px solid var(--line);text-align:left;color:#d6e5ef}
+.table th{font-size:13px;color:var(--muted);font-weight:700}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);color:#eaf7e8;font-weight:700;text-decoration:none}
+.btn.ghost{background:transparent;border:1px dashed rgba(255,255,255,0.04);color:var(--muted)}
+.btn.warn{background:linear-gradient(90deg,var(--danger),#ff7b7b);color:#fff;border:0}
+
+/* footer */
+.footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid var(--line);font-size:14px}
+
+/* badges */
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(124,255,107,0.06);color:var(--accent);font-weight:700;font-size:12px;border:1px solid rgba(124,255,107,0.06)}
+
+/* destruct list */
+.pdf-list{display:grid;gap:12px}
+.pdf-item{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01))}
+.pdf-item .meta{display:flex;gap:12px;align-items:center}
+.pdf-item .meta .title{font-weight:700}
+.pdf-item .meta .sub{color:var(--muted);font-size:13px}
+
+/* small screens */
+@media(max-width:900px){
+  .cols-3,.cols-2{grid-template-columns:1fr}
+  .menu{display:none}
+  .hambtn{display:inline-flex}
+}
+
+/* subtle focus */
+a:focus, button:focus{outline:2px solid rgba(124,255,107,0.12);outline-offset:2px}
+
+
+---
+
+/assets/script.js
+
+// minimal script: mobile menu toggle & active link highlight
+document.addEventListener('DOMContentLoaded', function(){
+  const btn = document.getElementById('hambtn');
+  const menu = document.getElementById('mobileMenu');
+  if(btn && menu){
+    btn.addEventListener('click', ()=> menu.classList.toggle('hidden'));
+  }
+
+  // active link based on pathname
+  const links = document.querySelectorAll('.menu a');
+  links.forEach(a=>{
+    if(window.location.pathname.endsWith(a.getAttribute('href')) || (a.getAttribute('href')==='index.html' && window.location.pathname.endsWith('/'))){
+      a.classList.add('active');
+    }
+  });
+});
+
+
+---
+
+index.html (Home / Dashboard)
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S.I.N | Intelligence Agency</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { background-color: #0a0a0a; color: #e5e5e5; font-family: 'Courier New', monospace; }
-    header { background: #111; border-bottom: 1px solid #222; }
-    nav a { transition: color 0.3s; }
-    nav a:hover { color: #00ffc8; }
-    .glow-text { color: #00ffc8; text-shadow: 0 0 10px #00ffc8; }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>S.I.N — Dashboard</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/script.js"></script>
 </head>
 <body>
-  <!-- Header -->
-  <header class="flex items-center justify-between px-6 py-4">
-    <div class="flex items-center gap-3">
-      <img src="https://github.com/suraqahinteligencenetwork/suraqahinteligencenetwork/blob/1908829827d4183ce375b7454c821fde8e392c26/Picsart_25-08-21_03-37-38-714.jpg?raw=1" alt="S.I.N Logo" class="w-12 h-12 rounded-full border border-gray-700">
-      <h1 class="text-2xl font-bold glow-text">S.I.N</h1>
+  <header class="header">
+    <div class="container navbar">
+      <a class="brand" href="index.html">
+        <img src="https://github.com/suraqahinteligencenetwork/s/blob/9305988c97c1ed53ee8fcf3f95a9bdb4bca128b7/Picsart_25-08-21_03-37-38-714.jpg?raw=1" alt="S.I.N Logo">
+        <div class="title">S.I.N</div>
+      </a>
+
+      <nav>
+        <div class="menu">
+          <a href="index.html" class="active">Home</a>
+          <a href="documents.html">Documents</a>
+          <a href="press.html">Press Releases</a>
+          <a href="pdfs.html">PDFs</a>
+          <a href="destruction-community/index.html">Destruction of Community</a>
+        </div>
+        <button id="hambtn" class="hambtn" aria-label="menu">☰</button>
+      </nav>
     </div>
-    <nav class="space-x-6">
-      <a href="#about">About</a>
-      <a href="#tools">Tools</a>
-      <a href="#downloads">Downloads</a>
-      <a href="#destruction">Destruction</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div id="mobileMenu" class="container hidden" style="padding-bottom:12px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="index.html">Home</a>
+        <a href="documents.html">Documents</a>
+        <a href="press.html">Press Releases</a>
+        <a href="pdfs.html">PDFs</a>
+        <a href="destruction-community/index.html">Destruction of Community</a>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section class="text-center py-20">
-    <h2 class="text-4xl glow-text font-bold mb-4">Suraqah Intelligence Network</h2>
-    <p class="text-lg text-gray-400">Global Covert Intelligence | Offensive Cyber Ops | Classified Files</p>
-  </section>
+  <main>
+    <section class="hero container">
+      <div class="kicker" style="font-size:12px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase">UNCLASSIFIED • PUBLIC INTERFACE</div>
+      <h1 style="font-size:32px;margin-top:10px">Suraqah Intelligence Network</h1>
+      <p class="lead">Secure public portal for open-source publications, press statements, and archival files. This interface is designed for clarity, reliability and an agency-grade presentation.</p>
+    </section>
 
-  <!-- About -->
-  <section id="about" class="px-8 py-16">
-    <h3 class="text-2xl glow-text mb-4">About Us</h3>
-    <p class="max-w-3xl text-gray-400">
-      The Suraqah Intelligence Network (S.I.N) is an independent intelligence & cyber operations unit.
-      Modeled after modern agencies, S.I.N specializes in strategic intelligence gathering, black-hat cyber operations,
-      and counter-intelligence missions worldwide.
-    </p>
-  </section>
+    <section class="section container" style="padding-top:24px;padding-bottom:32px">
+      <div class="grid cols-3">
+        <div class="card">
+          <div class="badge">Documents</div>
+          <h3 style="margin-top:8px">Operational Briefs</h3>
+          <p>Policy notes, open research, and intelligence briefs made available for review.</p>
+          <p style="margin-top:12px"><a class="btn" href="documents.html">Open Documents</a></p>
+        </div>
 
-  <!-- Tools -->
-  <section id="tools" class="px-8 py-16 bg-[#0f0f0f]">
-    <h3 class="text-2xl glow-text mb-4">Intelligence Tools</h3>
-    <ul class="list-disc ml-6 text-gray-300">
-      <li>OSINT Reconnaissance Frameworks</li>
-      <li>Signals Intelligence (SIGINT) Tracking Systems</li>
-      <li>Encrypted Darknet Communication Nodes</li>
-      <li>Drone Surveillance & AI Assisted Tracking</li>
-      <li>Advanced Cyber Offensive Toolkits</li>
-    </ul>
-  </section>
+        <div class="card">
+          <div class="badge">Press</div>
+          <h3 style="margin-top:8px">Official Statements</h3>
+          <p>Press releases, public statements, and archive notices.</p>
+          <p style="margin-top:12px"><a class="btn" href="press.html">Open Press Releases</a></p>
+        </div>
 
-  <!-- Downloads -->
-  <section id="downloads" class="px-8 py-16">
-    <h3 class="text-2xl glow-text mb-4">Downloads</h3>
-    <div class="space-y-3">
-      <a href="docs/sample1.pdf" class="block text-blue-400 hover:underline">Sample Intelligence Report 1</a>
-      <a href="docs/sample2.pdf" class="block text-blue-400 hover:underline">Sample Intelligence Report 2</a>
-      <a href="docs/sample3.zip" class="block text-blue-400 hover:underline">Encrypted Archive (Sample)</a>
+        <div class="card">
+          <div class="badge">PDF Library</div>
+          <h3 style="margin-top:8px">Primary PDFs</h3>
+          <p>Centralized PDF collection and critical documents for download.</p>
+          <p style="margin-top:12px"><a class="btn" href="pdfs.html">Browse PDFs</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="padding:20px 0 60px">
+      <div class="card">
+        <h3>Special Section — Destruction of Community</h3>
+        <p style="color:var(--muted);margin-top:8px">Contains two public release PDFs. Use the dedicated section for reliable access.</p>
+        <div style="margin-top:12px">
+          <a class="btn warn" href="destruction-community/index.html">Open Destruction of Community</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© 2025 Suraqah Intelligence Network (S.I.N). All rights reserved.</div>
+      <div style="margin-top:6px;color:var(--muted)">Contact: <a href="mailto:suraqahinteligencenetwork@gmail.com" style="color:var(--muted)">suraqahinteligencenetwork@gmail.com</a> · Instagram: <a href="https://www.instagram.com/randommujahidv?igsh=MW40cGM0azRwNHNrbg==" target="_blank" style="color:var(--accent-2)">@randommujahidv</a></div>
     </div>
-  </section>
-
-  <!-- Destruction of Community -->
-  <section id="destruction" class="px-8 py-16 bg-[#0f0f0f]">
-    <h3 class="text-2xl glow-text mb-4">DESTRUCTION OF COMMUNITY</h3>
-    <p class="text-gray-400 mb-6">Archived classified destruction files. Restricted Access.</p>
-    <div class="space-y-3">
-      <a href="https://github.com/suraqahinteligencenetwork/suraqahinteligencenetwork/blob/3171166c941ad320af22d90b10f4c678ae0307fb/DESTRUCTION_OF_ACP_UPGRADED%20(1).pdf?raw=1" target="_blank" class="block text-red-400 hover:underline">DESTRUCTION OF AYAN (PDF)</a>
-      <a href="docs/DESTRUCTION_OF_IYI.pdf" target="_blank" class="block text-red-400 hover:underline">DESTRUCTION OF IYI (PDF)</a>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="px-8 py-16">
-    <h3 class="text-2xl glow-text mb-4">Contact / Channels</h3>
-    <p>Email: <span class="text-gray-400">contact@suraqahintel.net</span></p>
-    <p>Official Instagram: <a href="https://www.instagram.com/randommujahidv?igsh=MW40cGM0azRwNHNrbg==" class="text-blue-400 hover:underline" target="_blank">@randommujahidv</a></p>
-  </section>
-
-  <!-- Footer -->
-  <footer class="text-center py-6 border-t border-gray-800 text-gray-500 text-sm">
-    © 2025 Suraqah Intelligence Network | All Rights Reserved
   </footer>
 </body>
 </html>
+
+
+---
+
+documents.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>S.I.N — Documents</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/script.js"></script>
+</head>
+<body>
+  <!-- header same as index -->
+  <header class="header">
+    <div class="container navbar">
+      <a class="brand" href="index.html">
+        <img src="https://github.com/suraqahinteligencenetwork/s/blob/9305988c97c1ed53ee8fcf3f95a9bdb4bca128b7/Picsart_25-08-21_03-37-38-714.jpg?raw=1" alt="S.I.N Logo">
+        <div class="title">S.I.N</div>
+      </a>
+
+      <nav>
+        <div class="menu">
+          <a href="index.html">Home</a>
+          <a href="documents.html" class="active">Documents</a>
+          <a href="press.html">Press Releases</a>
+          <a href="pdfs.html">PDFs</a>
+          <a href="destruction-community/index.html">Destruction of Community</a>
+        </div>
+        <button id="hambtn" class="hambtn" aria-label="menu">☰</button>
+      </nav>
+    </div>
+    <div id="mobileMenu" class="container hidden" style="padding-bottom:12px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="index.html">Home</a>
+        <a href="documents.html">Documents</a>
+        <a href="press.html">Press Releases</a>
+        <a href="pdfs.html">PDFs</a>
+        <a href="destruction-community/index.html">Destruction of Community</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="kicker">DOCUMENTS</div>
+      <h1>Operational Documents</h1>
+      <p class="lead">Curated public documents. Upload your files to /docs and update links here.</p>
+    </section>
+
+    <section class="section container">
+      <div class="card">
+        <table class="table" aria-label="documents table">
+          <thead>
+            <tr><th>Title</th><th>Type</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Intelligence Report — Sample 1</td>
+              <td>PDF</td>
+              <td><a href="docs/sample1.pdf" class="btn">Download</a></td>
+            </tr>
+            <tr>
+              <td>Strategy Document — Sample 2</td>
+              <td>PDF</td>
+              <td><a href="docs/sample2.pdf" class="btn">Download</a></td>
+            </tr>
+            <tr>
+              <td>Tools & Resources Pack</td>
+              <td>ZIP</td>
+              <td><a href="docs/sample3.zip" class="btn">Download</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="kicker" style="margin-top:12px;color:var(--muted)">Tip: place files into /docs and push to repo to make these live.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2025 S.I.N — Public Portal</div>
+  </footer>
+</body>
+</html>
+
+
+---
+
+press.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>S.I.N — Press Releases</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/script.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container navbar">
+      <a class="brand" href="index.html">
+        <img src="https://github.com/suraqahinteligencenetwork/s/blob/9305988c97c1ed53ee8fcf3f95a9bdb4bca128b7/Picsart_25-08-21_03-37-38-714.jpg?raw=1" alt="S.I.N Logo">
+        <div class="title">S.I.N</div>
+      </a>
+      <nav>
+        <div class="menu">
+          <a href="index.html">Home</a>
+          <a href="documents.html">Documents</a>
+          <a href="press.html" class="active">Press Releases</a>
+          <a href="pdfs.html">PDFs</a>
+          <a href="destruction-community/index.html">Destruction of Community</a>
+        </div>
+        <button id="hambtn" class="hambtn" aria-label="menu">☰</button>
+      </nav>
+    </div>
+    <div id="mobileMenu" class="container hidden" style="padding-bottom:12px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="index.html">Home</a>
+        <a href="documents.html">Documents</a>
+        <a href="press.html">Press Releases</a>
+        <a href="pdfs.html">PDFs</a>
+        <a href="destruction-community/index.html">Destruction of Community</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="kicker">PRESS</div>
+      <h1>Official Statements</h1>
+      <p class="lead">Public notices and official releases. Update these cards with press content.</p>
+    </section>
+
+    <section class="section container">
+      <div class="grid cols-2">
+        <article class="card">
+          <div class="badge">Notice</div>
+          <h3 style="margin-top:10px">Portal Upgrade</h3>
+          <p style="margin-top:8px;color:var(--muted)">Site redesigned to provide a professional dark interface and a dedicated 'Destruction of Community' section.</p>
+        </article>
+        <article class="card">
+          <div class="badge">Archive</div>
+          <h3 style="margin-top:10px">PDF Archive</h3>
+          <p style="margin-top:8px;color:var(--muted)">Key public PDFs are preserved with raw links to ensure reliable access.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2025 S.I.N — All rights reserved</div>
+  </footer>
+</body>
+</html>
+
+
+---
+
+pdfs.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>S.I.N — PDF Library</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/script.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container navbar">
+      <a class="brand" href="index.html">
+        <img src="https://github.com/suraqahinteligencenetwork/s/blob/9305988c97c1ed53ee8fcf3f95a9bdb4bca128b7/Picsart_25-08-21_03-37-38-714.jpg?raw=1" alt="S.I.N Logo">
+        <div class="title">S.I.N</div>
+      </a>
+      <nav>
+        <div class="menu">
+          <a href="index.html">Home</a>
+          <a href="documents.html">Documents</a>
+          <a href="press.html">Press Releases</a>
+          <a href="pdfs.html" class="active">PDFs</a>
+          <a href="destruction-community/index.html">Destruction of Community</a>
+        </div>
+        <button id="hambtn" class="hambtn" aria-label="menu">☰</button>
+      </nav>
+    </div>
+    <div id="mobileMenu" class="container hidden" style="padding-bottom:12px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="index.html">Home</a>
+        <a href="documents.html">Documents</a>
+        <a href="press.html">Press Releases</a>
+        <a href="pdfs.html">PDFs</a>
+        <a href="destruction-community/index.html">Destruction of Community</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="kicker">PDF LIBRARY</div>
+      <h1>Primary PDFs</h1>
+      <p class="lead">Direct links to PDF resources. All items should use raw GitHub URLs or be hosted under /docs in the repo.</p>
+    </section>
+
+    <section class="section container">
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr><th>Title</th><th>Link</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DESTRUCTION OF IYI</td>
+              <td><a target="_blank" rel="noopener" href="https://github.com/suraqahinteligencenetwork/suraqahinteligencenetwork/blob/b2c137e9c3be938e799271f0bc055e1bc14443da/DESTRUCTION_OF_IYI%20(1).pdf?raw=1" class="btn">Open PDF</a></td>
+            </tr>
+            <tr>
+              <td>DESTRUCTION OF AYAN (ACP UPGRADED)</td>
+              <td><a target="_blank" rel="noopener" href="https://github.com/suraqahinteligencenetwork/s/blob/9305988c97c1ed53ee8fcf3f95a9bdb4bca128b7/DESTRUCTION_OF_ACP_UPGRADED%20(1).pdf?raw=1" class="btn">Open PDF</a></td>
+            </tr>
+            <tr>
+              <td>Sample Intelligence Report</td>
+              <td><a href="docs/sample1.pdf" class="btn">Download</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2025 S.I.N — PDF Library</div>
+  </footer>
+</body>
+</html>
+
+
+---
+
+/destruction-community/index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Destruction of Community — S.I.N</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script defer src="../assets/script.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container navbar">
+      <a class="brand" href="../index.html">
+        <img src="https://github.com/suraqahinteligencenetwork/s/blob/9305988c97c1ed53ee8fcf3f95a9bdb4bca128b7/Picsart_25-08-21_03-37-38-714.jpg?raw=1" alt="S.I.N Logo">
+        <div class="title">S.I.N</div>
+      </a>
+      <nav>
+        <div class="menu">
+          <a href="../index.html">Home</a>
+          <a href="../documents.html">Documents</a>
+          <a href="../press.html">Press</a>
+          <a href="../pdfs.html">PDFs</a>
+          <a href="index.html" class="active">Destruction of Community</a>
+        </div>
+        <button id="hambtn" class="hambtn" aria-label="menu">☰</button>
+      </nav>
+    </div>
+    <div id="mobileMenu" class="container hidden" style="padding-bottom:12px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="../index.html">Home</a>
+        <a href="../documents.html">Documents</a>
+        <a href="../press.html">Press Releases</a>
+        <a href="../pdfs.html">PDFs</a>
+        <a href="index.html">Destruction of Community</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="kicker">DESTRUCTION OF COMMUNITY</div>
+      <h1>Destruction of Community — Archive</h1>
+      <p class="lead">The two public PDFs are listed below with direct raw GitHub links. For guaranteed availability, upload copies into this folder in your repo and update the links.</p>
+    </section>
+
+    <section class="section container">
+      <div class="pdf-list">
+        <div class="pdf-item">
+          <div class="meta">
+            <div>
+              <div class="title">DESTRUCTION OF AYAN (ACP UPGRADED)</div>
+              <div class="sub">Public release — raw GitHub link</div>
+            </div>
+          </div>
+          <div>
+            <a class="btn" target="_blank" rel="noopener" href="https://github.com/suraqahinteligencenetwork/s/blob/9305988c97c1ed53ee8fcf3f95a9bdb4bca128b7/DESTRUCTION_OF_ACP_UPGRADED%20(1).pdf?raw=1">Open / Download</a>
+          </div>
+        </div>
+
+        <div class="pdf-item">
+          <div class="meta">
+            <div>
+              <div class="title">DESTRUCTION OF IYI</div>
+              <div class="sub">Original public document — raw GitHub link</div>
+            </div>
+          </div>
+          <div>
+            <a class="btn" target="_blank" rel="noopener" href="https://github.com/suraqahinteligencenetwork/suraqahinteligencenetwork/blob/b2c137e9c3be938e799271f0bc055e1bc14443da/DEST

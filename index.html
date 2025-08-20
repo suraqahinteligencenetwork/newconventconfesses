@@ -1,131 +1,93 @@
-<!DOCTYPE html><html lang="en" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S.I.N — Suraqah Intelligence Network</title>
+  <title>S.I.N | Intelligence Agency</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            dark: '#0a0a0a',
-            accent: '#f97316'
-          },
-          fontFamily: {
-            sans: ['Inter','ui-sans-serif','system-ui']
-          }
-        }
-      }
-    }
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #0a0a0a; color: #e5e5e5; font-family: 'Courier New', monospace; }
+    header { background: #111; border-bottom: 1px solid #222; }
+    nav a { transition: color 0.3s; }
+    nav a:hover { color: #00ffc8; }
+    .glow-text { color: #00ffc8; text-shadow: 0 0 10px #00ffc8; }
+  </style>
 </head>
-<body class="bg-dark text-gray-200 font-sans antialiased">
+<body>
   <!-- Header -->
-  <header class="bg-black/90 border-b border-gray-800 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div>
-        <h1 class="text-2xl md:text-3xl font-extrabold tracking-widest">S.I.N</h1>
-        <p class="text-xs uppercase text-gray-400 tracking-widest">Suraqah Intelligence Network</p>
-      </div>
-      <nav class="hidden md:flex gap-6 text-sm">
-        <a href="#home" class="hover:text-accent">Home</a>
-        <a href="#downloads" class="hover:text-accent">Downloads</a>
-        <a href="#pdf-download" class="hover:text-accent">PDF</a>
-        <a href="#files" class="hover:text-accent">Files</a>
-        <a href="#cases" class="hover:text-accent">Cases</a>
-        <a href="#tools" class="hover:text-accent">Tools</a>
-        <a href="#tricks" class="hover:text-accent">Tricks</a>
-        <a href="#tactics" class="hover:text-accent">Tactics</a>
-        <a href="#owners" class="hover:text-accent">Owners</a>
-        <a href="#contact" class="hover:text-accent">Contact</a>
-      </nav>
+  <header class="flex items-center justify-between px-6 py-4">
+    <div class="flex items-center gap-3">
+      <img src="https://github.com/suraqahinteligencenetwork/suraqahinteligencenetwork/blob/1908829827d4183ce375b7454c821fde8e392c26/Picsart_25-08-21_03-37-38-714.jpg?raw=1" alt="S.I.N Logo" class="w-12 h-12 rounded-full border border-gray-700">
+      <h1 class="text-2xl font-bold glow-text">S.I.N</h1>
     </div>
-  </header>  <!-- Hero -->  <section id="home" class="relative bg-gradient-to-br from-black via-gray-900 to-black py-24">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-6xl font-black">Suraqah Intelligence Network</h2>
-      <p class="mt-6 text-lg text-gray-400">Global Surveillance | Counter-Intelligence | Cyber Defense</p>
-    </div>
-  </section>  <!-- Downloads -->  <section id="downloads" class="py-20 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-8">Downloads</h3>
-      <ul class="space-y-4 text-gray-300">
-        <li>Encrypted OSINT Reports (Classified)</li>
-        <li>Darknet Market Analysis 2025</li>
-        <li>Advanced Reconnaissance Scripts</li>
-      </ul>
-    </div>
-  </section>  <!-- PDF -->  <section id="pdf-download" class="py-20 border-b border-gray-800 text-center">
-    <h3 class="text-3xl font-bold mb-6">Strategic File</h3>
-    <p class="mb-6 text-gray-400">Download the classified PDF — "Destruction of IYI"</p>
-    <a href="destruction_of_iyi.pdf" download class="bg-accent px-6 py-3 rounded-xl font-semibold">Download PDF</a>
-  </section>  <!-- Files -->  <section id="files" class="py-20 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-8">Files Repository</h3>
-      <ul class="grid md:grid-cols-2 gap-6 text-gray-300">
-        <li>Operation Phantom Protocol</li>
-        <li>Counter Cyber-Espionage Logs</li>
-        <li>Agent Deployment Maps</li>
-        <li>Surveillance Drone Data</li>
-      </ul>
-    </div>
-  </section>  <!-- Cases -->  <section id="cases" class="py-20 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-8">Case Studies</h3>
-      <ul class="space-y-4 text-gray-300">
-        <li><span class="font-semibold">Operation Aurora:</span> Chinese Cyber Espionage Campaign</li>
-        <li><span class="font-semibold">Stuxnet Worm:</span> First Cyber Weapon on Nuclear Facilities</li>
-        <li><span class="font-semibold">Snowden Leaks:</span> NSA Mass Surveillance Exposed</li>
-      </ul>
-    </div>
-  </section>  <!-- Tools -->  <section id="tools" class="py-20 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-8">Intelligence Tools</h3>
-      <ul class="grid md:grid-cols-2 gap-6 text-gray-300">
-        <li>Maltego — Link Analysis & OSINT Mapping</li>
-        <li>Shodan — IoT/Device Intelligence Search</li>
-        <li>Wireshark — Network Packet Sniffing</li>
-        <li>Metasploit — Exploitation Framework</li>
-        <li>Recon-ng — Recon Automation Suite</li>
-        <li>OSINT Framework — Multi-Source Intel Gathering</li>
-      </ul>
-    </div>
-  </section>  <!-- Tricks -->  <section id="tricks" class="py-20 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-8">Intelligence Tricks</h3>
-      <ul class="grid md:grid-cols-2 gap-6 text-gray-300">
-        <li>Google Dorking — Hidden Search Queries</li>
-        <li>EXIF Metadata Extraction — Image/Docs Forensics</li>
-        <li>DNS Spoofing — Redirection Attacks</li>
-        <li>Social Engineering & Sock Puppets</li>
-        <li>Covert Communication Channels</li>
-        <li>Deep Web Crawling</li>
-      </ul>
-    </div>
-  </section>  <!-- Tactics -->  <section id="tactics" class="py-20 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-8">Operational Tactics</h3>
-      <ul class="grid md:grid-cols-2 gap-6 text-gray-300">
-        <li>HUMINT — Human Intelligence Infiltration</li>
-        <li>SIGINT — Signal Intelligence Surveillance</li>
-        <li>OSINT — Open Source Intelligence Exploitation</li>
-        <li>OPSEC — Operational Security Protocols</li>
-        <li>Counter-Deception Strategies</li>
-        <li>Surveillance & Counter-Surveillance</li>
-      </ul>
-    </div>
-  </section>  <!-- Owners -->  <section id="owners" class="py-20 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-3xl font-bold mb-8">Command & Owners</h3>
-      <p class="text-gray-400">S.I.N is led by shadow operatives and strategic analysts worldwide. Classified identities remain undisclosed.</p>
-    </div>
-  </section>  <!-- Contact -->  <section id="contact" class="py-20">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h3 class="text-3xl font-bold mb-8">Contact Securely</h3>
-      <p class="text-gray-400 mb-6">All communications are monitored & encrypted. Reach us via secured channels only.</p>
-      <a href="mailto:sin@securemail.com" class="bg-accent px-6 py-3 rounded-xl font-semibold">Encrypted Email</a>
+    <nav class="space-x-6">
+      <a href="#about">About</a>
+      <a href="#tools">Tools</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#destruction">Destruction</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="text-center py-20">
+    <h2 class="text-4xl glow-text font-bold mb-4">Suraqah Intelligence Network</h2>
+    <p class="text-lg text-gray-400">Global Covert Intelligence | Offensive Cyber Ops | Classified Files</p>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="px-8 py-16">
+    <h3 class="text-2xl glow-text mb-4">About Us</h3>
+    <p class="max-w-3xl text-gray-400">
+      The Suraqah Intelligence Network (S.I.N) is an independent intelligence & cyber operations unit.
+      Modeled after modern agencies, S.I.N specializes in strategic intelligence gathering, black-hat cyber operations,
+      and counter-intelligence missions worldwide.
+    </p>
+  </section>
+
+  <!-- Tools -->
+  <section id="tools" class="px-8 py-16 bg-[#0f0f0f]">
+    <h3 class="text-2xl glow-text mb-4">Intelligence Tools</h3>
+    <ul class="list-disc ml-6 text-gray-300">
+      <li>OSINT Reconnaissance Frameworks</li>
+      <li>Signals Intelligence (SIGINT) Tracking Systems</li>
+      <li>Encrypted Darknet Communication Nodes</li>
+      <li>Drone Surveillance & AI Assisted Tracking</li>
+      <li>Advanced Cyber Offensive Toolkits</li>
+    </ul>
+  </section>
+
+  <!-- Downloads -->
+  <section id="downloads" class="px-8 py-16">
+    <h3 class="text-2xl glow-text mb-4">Downloads</h3>
+    <div class="space-y-3">
+      <a href="docs/sample1.pdf" class="block text-blue-400 hover:underline">Sample Intelligence Report 1</a>
+      <a href="docs/sample2.pdf" class="block text-blue-400 hover:underline">Sample Intelligence Report 2</a>
+      <a href="docs/sample3.zip" class="block text-blue-400 hover:underline">Encrypted Archive (Sample)</a>
     </div>
   </section>
+
+  <!-- Destruction of Community -->
+  <section id="destruction" class="px-8 py-16 bg-[#0f0f0f]">
+    <h3 class="text-2xl glow-text mb-4">DESTRUCTION OF COMMUNITY</h3>
+    <p class="text-gray-400 mb-6">Archived classified destruction files. Restricted Access.</p>
+    <div class="space-y-3">
+      <a href="https://github.com/suraqahinteligencenetwork/suraqahinteligencenetwork/blob/3171166c941ad320af22d90b10f4c678ae0307fb/DESTRUCTION_OF_ACP_UPGRADED%20(1).pdf?raw=1" target="_blank" class="block text-red-400 hover:underline">DESTRUCTION OF AYAN (PDF)</a>
+      <a href="docs/DESTRUCTION_OF_IYI.pdf" target="_blank" class="block text-red-400 hover:underline">DESTRUCTION OF IYI (PDF)</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="px-8 py-16">
+    <h3 class="text-2xl glow-text mb-4">Contact / Channels</h3>
+    <p>Email: <span class="text-gray-400">contact@suraqahintel.net</span></p>
+    <p>Official Instagram: <a href="https://www.instagram.com/randommujahidv?igsh=MW40cGM0azRwNHNrbg==" class="text-blue-400 hover:underline" target="_blank">@randommujahidv</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 border-t border-gray-800 text-gray-500 text-sm">
+    © 2025 Suraqah Intelligence Network | All Rights Reserved
+  </footer>
 </body>
   </html>
+  

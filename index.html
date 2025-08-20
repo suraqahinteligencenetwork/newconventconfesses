@@ -3,42 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S.I.N - Intelligence Network</title>
+  <title>S.I.N - Suraqah Intelligence Network</title>
   <style>
     body {
-      background-color: #0d0d0d;
-      color: #f1f1f1;
+      margin: 0;
       font-family: Arial, sans-serif;
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+    }
+    header {
+      background: #111;
+      padding: 20px;
       text-align: center;
-      padding: 40px;
+      border-bottom: 2px solid #444;
     }
-    h1 {
-      color: #00ffcc;
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      letter-spacing: 2px;
     }
-    a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      background: #00ffcc;
-      color: black;
+    nav {
+      background: #1c1c1c;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #f5f5f5;
       text-decoration: none;
-      border-radius: 8px;
+      padding: 14px 20px;
+      display: block;
+      transition: background 0.3s;
     }
-    a:hover {
-      background: #009977;
-      color: white;
+    nav a:hover {
+      background: #333;
+    }
+    section {
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+    section h2 {
+      border-bottom: 2px solid #444;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+    .downloads a {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: #f5f5f5;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .downloads a:hover {
+      background: #333;
+    }
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 20px;
+      border-top: 2px solid #444;
+      margin-top: 40px;
+    }
+    footer p {
+      margin: 5px 0;
+      font-size: 0.9em;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to S.I.N</h1>
-  <p>Suraqah Intelligence Network – Knowledge. Intelligence. Access.</p>
+  <header>
+    <h1>Suraqah Intelligence Network (S.I.N)</h1>
+    <p>Official Intelligence and Research Hub</p>
+  </header>
 
-  <h2>Downloads</h2>
-  <p><a href="report1.pdf" download>Download Report 1</a></p>
-  <p><a href="report2.pdf" download>Download Report 2</a></p>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#downloads">Downloads</a>
+    <a href="#files">Files</a>
+    <a href="#cases">Cases</a>
+    <a href="#tools">Tools</a>
+    <a href="#tricks">Tricks</a>
+    <a href="#tactics">Tactics</a>
+    <a href="#owners">Owners</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  <h2>Contact</h2>
-  <p>Email us: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+  <section id="home">
+    <h2>Home</h2>
+    <p>Welcome to the official platform of Suraqah Intelligence Network (S.I.N). This website serves as an open-source hub for intelligence documents, tools, and resources. All files here are published for free access.</p>
+  </section>
+
+  <section id="downloads" class="downloads">
+    <h2>Downloads</h2>
+    <a href="docs/sample1.pdf" download>📄 Intelligence Report – Sample 1</a>
+    <a href="docs/sample2.pdf" download>📄 Strategy Document – Sample 2</a>
+    <a href="docs/sample3.zip" download>🗂️ Tools & Resources Pack</a>
+  </section>
+
+  <section id="files">
+    <h2>Files</h2>
+    <p>Access classified and declassified files related to research, intelligence, and strategy. Uploads are updated frequently.</p>
+  </section>
+
+  <section id="cases">
+    <h2>Cases</h2>
+    <p>A detailed archive of intelligence case studies and historical operations will be maintained here.</p>
+  </section>
+
+  <section id="tools">
+    <h2>Tools</h2>
+    <p>A collection of publicly available intelligence tools, utilities, and open-source tactics.</p>
+  </section>
+
+  <section id="tricks">
+    <h2>Tricks</h2>
+    <p>Guides, tutorials, and knowledge resources for intelligence gathering, analysis, and strategy.</p>
+  </section>
+
+  <section id="tactics">
+    <h2>Tactics</h2>
+    <p>Advanced tactics, counter-intelligence methods, and research-based strategies.</p>
+  </section>
+
+  <section id="owners">
+    <h2>Owners</h2>
+    <p>This project is owned and maintained by the Suraqah Intelligence Network (S.I.N) operations team.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>For inquiries or submissions, reach us at:</p>
+    <p><strong>Email:</strong> suraqahinteligencenetwork@gmail.com</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Suraqah Intelligence Network (S.I.N). All rights reserved.</p>
+    <p>Hosted with GitHub Pages</p>
+  </footer>
 </body>
 </html>
